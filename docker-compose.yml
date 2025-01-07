@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .          
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"         
+    volumes:
+      - ./public:/var/www/html  
+    depends_on:
+      - db                
+    environment:
+      PHP_MEMORY_LIMIT: "256M"
+
+  db:
+    image: mysql:8.0      
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root         
+      MYSQL_DATABASE: project_db        
+      MYSQL_USER: user                  
+      MYSQL_PASSWORD: password          
+    ports:
+      - "3306:3306"      
+    volumes:
+      - db_data:/var/lib/mysql  
+volumes:
+  db_data:                 
