@@ -1,0 +1,29 @@
+/projekt
+│
+├── /public                # Pliki dostępne publicznie (np. pliki HTML, CSS, JavaScript, obrazy)
+│   ├── index.php          # Główna strona aplikacji, punkt wejścia
+│   ├── login.php          # Formularz logowania
+│   ├── register.php       # Formularz rejestracji
+│   └── assets/            # Można tu trzymać pliki CSS, JS, obrazy
+│       ├── style.css      # Styl CSS
+│       └── script.js      # Skrypty JavaScript
+│
+├── /src                   # Główna logika aplikacji (klasy PHP, modele, kontrolery)
+│   ├── Database.php       # Klasa do obsługi połączenia z bazą danych
+│   ├── User.php           # Klasa odpowiedzialna za rejestrację i logowanie użytkowników
+│   ├── Album.php          # Klasa odpowiedzialna za zarządzanie albumami muzycznymi
+│   └── Auth.php           # Klasa pomocnicza do sprawdzania czy użytkownik jest zalogowany
+│
+├── /templates             # Szablony HTML (opcjonalnie, jeśli chcesz używać oddzielnych szablonów)
+│   ├── header.php         # Nagłówek HTML, np. menu nawigacyjne
+│   ├── footer.php         # Stopka strony
+│   └── album_list.php     # Szablon do wyświetlania listy albumów
+│
+├── /config                # Konfiguracja aplikacji (np. ustawienia bazy danych)
+│   └── config.php         # Plik z konfiguracją bazy danych (dane dostępowe)
+│
+├── /database              # Pliki związane z bazą danych (skrypty SQL)
+│   └── schema.sql         # Skrypt do stworzenia bazy danych i tabel (tworzenie tabel users i albums)
+│
+└── /logs                  # Logi aplikacji (opcjonalnie)
+    └── app.log            # Logi błędów lub inne informacje diagnostyczne

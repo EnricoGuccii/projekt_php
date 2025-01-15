@@ -3,28 +3,42 @@ version: '3.8'
 services:
   web:
     build:
-      context: .          
+      context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:80"         
+      - "8080:80"
     volumes:
-      - ./public:/var/www/html  
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./templates:/var/www/templates
     depends_on:
-      - db                
+      - db
     environment:
       PHP_MEMORY_LIMIT: "256M"
 
   db:
-    image: mysql:8.0      
+    image: mysql:8.0
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: root         
-      MYSQL_DATABASE: project_db        
-      MYSQL_USER: user                  
-      MYSQL_PASSWORD: password          
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"      
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql  
-volumes:
-  db_data:                 
+      - /var/lib/mysql  
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql  
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
